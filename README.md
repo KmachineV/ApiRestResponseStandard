@@ -52,6 +52,10 @@ La clase ApiResponseModel representa la estructura estandarizada de la respuesta
 
 
 # Beneficios
-Consistencia: Asegura que todas las respuestas API sigan una estructura consistente, facilitando el manejo de respuestas en el lado del cliente.
-Claridad: Proporciona mensajes claros y descriptivos para cada respuesta, ayudando en la depuración y mejorando la experiencia del usuario. Asi como tambien retornar el codigo de estado HTTP correspondiente.
-Mantenibilidad: Centraliza la lógica de manejo de respuestas, haciendo que el código sea más fácil de mantener y extender.
+* Consistencia: Asegura que todas las respuestas API sigan una estructura consistente, facilitando el manejo de respuestas en el lado del cliente.
+
+
+* Claridad: Proporciona mensajes claros y descriptivos para cada respuesta, ayudando en la depuración y mejorando la experiencia del usuario. Asi como tambien retornar el codigo de estado HTTP correspondiente.
+
+
+* Mantenibilidad: Centraliza la lógica de manejo de respuestas, haciendo que el código sea más fácil de mantener y extender.
