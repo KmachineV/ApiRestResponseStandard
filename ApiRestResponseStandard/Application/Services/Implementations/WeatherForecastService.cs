@@ -22,7 +22,6 @@ public class WeatherForecastService : IWeatherForecastServices
 
     public async Task<ApiResponseModel<string>> GetWeatherForecastError()
     {
-      
         return ApiResponseHandler.GetApiResponse(WeatherForecastApiResponse.ERROR, "Exception");
     }
 
