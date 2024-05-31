@@ -12,7 +12,7 @@ La clase ApiResponseHandler es responsable de manejar y formatear las respuestas
 
 public class ApiResponseHandler
 {
-private static readonly Dictionary<int, ApiUtilsConst> ResponseMappings = new();
+    private static readonly Dictionary<int, ApiUtilsConst> ResponseMappings = new();
 
     public static ApiResponseModel<T?> GetApiResponse<T>(ApiUtilsConst apiUtilsConst, T? response)
     {
@@ -37,9 +37,18 @@ private static readonly Dictionary<int, ApiUtilsConst> ResponseMappings = new();
     }
 }
 ```
+
+```csharp
+ [HttpGet(Name = "GetWeatherForecast")]
+ public async Task<IActionResult> Get()
+ {
+        var result = await _weatherForecastService.GetWeatherForecast();
+        return StatusCode(result.StatusCode, result);
+ }
+```
 # Componentes
 Clase ApiUtilsConst
-Esta clase contiene constantes utilizadas para mapear las respuestas API. Incluye propiedades como "Code", "D"escription" y "StatusCode".
+Esta clase contiene constantes utilizadas para mapear las respuestas API. Incluye propiedades como "Code", "Description" y "StatusCode".
 
 Clase ApiResponseModel<T>
 La clase ApiResponseModel representa la estructura estandarizada de la respuesta API. Incluye las siguientes propiedades:
