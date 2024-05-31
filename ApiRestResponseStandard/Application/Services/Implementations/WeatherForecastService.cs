@@ -31,8 +31,7 @@ public class WeatherForecastService : IWeatherForecastServices
         var findresult = result.Find(a => a.Summary == "XD");
         if(findresult == null)
         {
-            findresult = null;
-            return ApiResponseHandler.GetApiResponse<WeatherForecast?>(WeatherForecastApiResponse.NOT_FOUND, findresult);
+            return ApiResponseHandler.GetApiResponse<WeatherForecast?>(WeatherForecastApiResponse.NOT_FOUND, null);
         }
         return ApiResponseHandler.GetApiResponse(WeatherForecastApiResponse.SUCCESS, findresult);
         
