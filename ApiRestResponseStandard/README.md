@@ -36,28 +36,20 @@ private static readonly Dictionary<int, ApiUtilsConst> ResponseMappings = new();
         return apiResponse;
     }
 }
-
+```
 # Componentes
 Clase ApiUtilsConst
 Esta clase contiene constantes utilizadas para mapear las respuestas API. Incluye propiedades como "Code", "D"escription" y "StatusCode".
 
 Clase ApiResponseModel<T>
 La clase ApiResponseModel representa la estructura estandarizada de la respuesta API. Incluye las siguientes propiedades:
-
-Message: Un mensaje descriptivo correspondiente a la respuesta API.
-Operation: El código de operación de la respuesta API.
-StatusCode: El código de estado HTTP de la respuesta.
-Response: La carga útil de la respuesta real.
-Ejemplo de Uso
-A continuación se muestra un ejemplo de cómo utilizar el ApiResponseHandler para generar una respuesta API estandarizada:
-
-```
-[HttpGet(Name = "GetWeatherForecast")]
-public async Task<IActionResult> Get()
 {
-var result = await _weatherForecastService.GetWeatherForecast();
-return StatusCode(result.StatusCode, result);
-}
+    Message: Un mensaje descriptivo correspondiente a la respuesta API.
+    Operation: El código de operación de la respuesta API.
+    StatusCode: El código de estado HTTP de la respuesta.
+    Response: La carga útil de la respuesta real. 
+}   
+
 
 # Beneficios
 Consistencia: Asegura que todas las respuestas API sigan una estructura consistente, facilitando el manejo de respuestas en el lado del cliente.
