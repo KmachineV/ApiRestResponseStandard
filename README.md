@@ -38,27 +38,55 @@ public class ApiResponseHandler
 }
 ```
 
-```csharp
- [HttpGet(Name = "GetWeatherForecast")]
- public async Task<IActionResult> Get()
- {
-        var result = await _weatherForecastService.GetWeatherForecast();
-        return StatusCode(result.StatusCode, result);
- }
-```
 # Componentes
 Clase ApiUtilsConst
 Esta clase contiene constantes utilizadas para mapear las respuestas API. Incluye propiedades como "Code", "Description" y "StatusCode".
+```csharp
+public class ApiUtilsConst
+{
+    public int Code { get; set; }
+    public string Description { get; set; }
+    public HttpStatusCode StatusCode { get; set; }
+}
+```
 
 Clase ApiResponseModel<T>
 La clase ApiResponseModel representa la estructura estandarizada de la respuesta API. Incluye las siguientes propiedades:
+```csharp
+public class ApiResponseModel<T>
 {
-    Message: Un mensaje descriptivo correspondiente a la respuesta API.
-    Operation: El código de operación de la respuesta API.
-    StatusCode: El código de estado HTTP de la respuesta.
-    Response: La carga útil de la respuesta real. 
-}   
+    public string? Message { get; set;}
+    public int? Operation {get; set;}
+    public int StatusCode { get; set;}
+    public T? Response { get; set;}
+} 
+```
 
+# Ejemplo
+* Service
+```csharp
+public async Task<ApiResponseModel<WeatherForecast?>> GetWeatherForecastNotFound()
+{
+    var result = await _weatherForecastRepository.GetWeatherForecast();
+    var findresult = result.Find(a => a.Summary == "XD");
+    if(findresult == null)
+    {
+         return ApiResponseHandler.GetApiResponse<WeatherForecast?>(WeatherForecastApiResponse.NOT_FOUND, null);
+    }
+    return ApiResponseHandler.GetApiResponse(WeatherForecastApiResponse.SUCCESS, findresult);
+
+}
+```
+* Controller
+
+```csharp
+[HttpGet("notfound", Name = "GetWeatherForecastNotFound")]
+public async Task<IActionResult> GetNotFound()
+{
+    var result = await _weatherForecastService.GetWeatherForecastNotFound();
+    return StatusCode(result.StatusCode, result);
+}
+```
 
 # Beneficios
 * Consistencia: Asegura que todas las respuestas API sigan una estructura consistente, facilitando el manejo de respuestas en el lado del cliente.
